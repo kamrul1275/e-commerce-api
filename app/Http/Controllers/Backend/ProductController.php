@@ -29,6 +29,26 @@ class ProductController extends Controller
         return response()->json(['message' => 'Product created successfully', 'product' => $product]);
     }
 
+
+
+
+
+
+    public function uploadImage(Request $request, Product $product)
+{
+    $request->validate(['image' => 'required|image|mimes:jpg,jpeg,png|max:2048']);
+
+    $path = $request->file('image')->store('products', 'public');
+
+    $product->images()->create([
+        'image_path' => $path,
+        'is_thumbnail' => $request->boolean('is_thumbnail', false)
+    ]);
+
+    return response()->json(['message' => 'Image uploaded successfully']);
+}
+
+
     // Show single product
     public function show(Product $product)
     {
