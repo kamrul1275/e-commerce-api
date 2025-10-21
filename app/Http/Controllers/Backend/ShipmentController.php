@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Order;
 use App\Models\Shipment;
 use Illuminate\Support\Str;
 use App\Models\DeliveryZone;
